@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: argocd-server-http-ingress
+  annotations:
+    ingress.kubernetes.io/proxy-body-size: 100M
+    ingress.kubernetes.io/app-root: "/"
+spec:
+  rules:
+    - host: ui.argocd.k8s
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: argocd-server
+            servicePort: http
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: argocd-server-grpc-ingress
+spec:
+  rules:
+    - host: grpc.argocd.k8s
+      http:
+        paths:
+          - backend:
+              serviceName: argocd-server
+              servicePort: https

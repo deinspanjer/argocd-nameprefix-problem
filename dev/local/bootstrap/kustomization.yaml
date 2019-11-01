@@ -1,0 +1,7 @@
+namePrefix: local-
+
+bases:
+  - ../../bases/bootstrap
+
+patchesStrategicMerge:
+  - overlays/local-git-daemon-repo-argocd.yaml

@@ -1,0 +1,7 @@
+# We want the server to have a service type of LoadBalancer so we can map the ingress to it.
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server
+spec:
+  type: LoadBalancer

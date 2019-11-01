@@ -1,0 +1,7 @@
+#TODO namePrefix causes an error finding the argocd-cm right now.
+#time="2019-11-01T14:06:41Z" level=fatal msg="configmap \"argocd-cm\" not found"
+namePrefix: dev-
+
+bases:
+  - ../../../bases/infrastructure/argo-apps/argocd
+

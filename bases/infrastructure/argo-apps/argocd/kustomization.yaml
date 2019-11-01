@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+
+resources:
+  # We want an ingress for the ArgoCD by default, so provide that resource config.
+  - base/argocd-ingress.yaml
+
+bases:
+  # This is the base for an ArgoCD install with cluster-admin access (i.e. it can deploy applications in the same cluster in which it runs.
+  - github.com/argoproj/argo-cd//manifests/cluster-install?ref=release-1.3
+
+patchesStrategicMerge:
+  # This is the list of specific patch overlays for k8s resources that need to be customized for our deploy.
+  - overlays/loadbalancer-argocd-server-service.yaml
